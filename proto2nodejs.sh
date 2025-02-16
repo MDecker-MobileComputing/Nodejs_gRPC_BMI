@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Aufruf gRCP-Compiler "protoc" für Node.js
+
 grpc_tools_node_protoc \
   --js_out=import_style=commonjs,binary:./output \
   --grpc_out=output \

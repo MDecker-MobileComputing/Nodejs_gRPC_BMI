@@ -10,13 +10,13 @@ Diese Repo enthält Client und Server (Nodejs) für die Durchführung einer Bere
 
 ----
 
-## Aufruf grpc ##
+## Aufruf protoc für Nodejs ##
 
 <br>
 
-Der grpc-Compiler `grpc` muss aufgerufen werden, um anhand der
-Datei [bmi_berechnung.proto](bmi_berechnung.proto) (Schnittstellenbeschreibung) die Stubs für Client und Server
-zu erzeugen. 
+Der gRCP-Compiler `protoc` muss aufgerufen werden, um anhand der
+Datei [bmi_berechnung.proto](bmi_berechnung.proto) (Schnittstellenbeschreibung) 
+die Stubs für Client und Server zu erzeugen. 
 
 <br>
 
@@ -27,7 +27,7 @@ npm install -g grpc-tools protobufjs
 
 <br>
 
-Aufruf grpc-Compiler unter Linux im Wurzelverzeichnis dieses Repos 
+Aufruf `protoc` unter Linux im Wurzelverzeichnis dieses Repos 
 (siehe auch [proto2nodejs.sh](proto2nodejs.sh)):
 ```
 grpc_tools_node_protoc \

@@ -1,6 +1,8 @@
 @echo off
 
-@REM Dieses Pfad anpassen.
+@REM Aufruf gRCP-Compiler "protoc" für Node.js
+
+@REM Diesen Pfad anpassen.
 @REM Basisverzeichnis für globale NPM-Module herausfinden: npm root -g
 set PLUGIN_PFAD=C:\Repository_NPM\grpc_tools_node_protoc_plugin.cmd
 
