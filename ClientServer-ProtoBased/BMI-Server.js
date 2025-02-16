@@ -5,14 +5,14 @@ const path        = require( "path"               );
 const PROTO_PATH = path.join( __dirname, "../bmi_berechnung.proto" );
 const packageDefinition = 
         protoLoader.loadSync( PROTO_PATH, 
-                             {
+                              {
                                 keepCase: true,
-                                longs: String,
-                                enums: String,
+                                longs   : String,
+                                enums   : String,
                                 defaults: true,
-                                oneofs: true
+                                oneofs  : true
                               }
-        );
+                            );
 const bmiProto = grpc.loadPackageDefinition( packageDefinition ).bmi;
 
 

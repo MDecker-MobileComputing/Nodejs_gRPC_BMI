@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var bmi_berechnung_pb = require('./bmi_berechnung_pb.js');
 
 function serialize_bmi_BmiEingabe(arg) {
