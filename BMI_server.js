@@ -13,11 +13,26 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 const bmiProto = grpc.loadPackageDefinition(packageDefinition).bmi;
 
 function berechneBmi(call, callback) {
-  const gewichtKg = call.request.gewicht_kg;
+
+  // Parameter auspacken
+  const gewichtKg        = call.request.gewicht_kg;
   const koerpergroesseCm = call.request.koerpergroesse_cm;
+
+  // BMI berechnen
   const koerpergroesseM = koerpergroesseCm / 100;
-  const bmi = gewichtKg / (koerpergroesseM * koerpergroesseM);
-  callback(null, { bmi: bmi });
+  let bmi = gewichtKg / (koerpergroesseM * koerpergroesseM);
+  bmi = Math.round(bmi * 10) / 10;
+
+  // Interpretation des BMI-Wertes
+  let interpretation = "";
+  if      ( bmi < 18.5 ) { interpretation = "Untergewicht";        }
+  else if ( bmi < 25.0 ) { interpretation = "Normalgewicht";       }
+  else if ( bmi < 30.0 ) { interpretation = "Prä-Adipositas";      }
+  else if ( bmi < 35.0 ) { interpretation = "Moderate Adipositas"; }
+  else if ( bmi < 40.0 ) { interpretation = "Starke Adipositas";   }
+  else                   { interpretation = "Extreme Adipositas";  }
+
+  callback(null, { bmi_wert: bmi, bmi_interpretation: interpretation });
 }
 
 function main() {

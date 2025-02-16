@@ -257,7 +257,8 @@ proto.bmi.BmiErgebnis.prototype.toObject = function(opt_includeInstance) {
  */
 proto.bmi.BmiErgebnis.toObject = function(includeInstance, msg) {
   var f, obj = {
-    bmi: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+    bmiWert: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    bmiInterpretation: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -296,7 +297,11 @@ proto.bmi.BmiErgebnis.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setBmi(value);
+      msg.setBmiWert(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBmiInterpretation(value);
       break;
     default:
       reader.skipField();
@@ -327,10 +332,17 @@ proto.bmi.BmiErgebnis.prototype.serializeBinary = function() {
  */
 proto.bmi.BmiErgebnis.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getBmi();
+  f = message.getBmiWert();
   if (f !== 0.0) {
     writer.writeFloat(
       1,
+      f
+    );
+  }
+  f = message.getBmiInterpretation();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
       f
     );
   }
@@ -338,10 +350,10 @@ proto.bmi.BmiErgebnis.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional float bmi = 1;
+ * optional float bmi_wert = 1;
  * @return {number}
  */
-proto.bmi.BmiErgebnis.prototype.getBmi = function() {
+proto.bmi.BmiErgebnis.prototype.getBmiWert = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 1, 0.0));
 };
 
@@ -350,8 +362,26 @@ proto.bmi.BmiErgebnis.prototype.getBmi = function() {
  * @param {number} value
  * @return {!proto.bmi.BmiErgebnis} returns this
  */
-proto.bmi.BmiErgebnis.prototype.setBmi = function(value) {
+proto.bmi.BmiErgebnis.prototype.setBmiWert = function(value) {
   return jspb.Message.setProto3FloatField(this, 1, value);
+};
+
+
+/**
+ * optional string bmi_interpretation = 2;
+ * @return {string}
+ */
+proto.bmi.BmiErgebnis.prototype.getBmiInterpretation = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.bmi.BmiErgebnis} returns this
+ */
+proto.bmi.BmiErgebnis.prototype.setBmiInterpretation = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
