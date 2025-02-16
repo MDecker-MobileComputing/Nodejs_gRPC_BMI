@@ -20,7 +20,7 @@ npm install -g grpc-tools protobufjs
 
 <br>
 
-Aufruf grpc-Compiler unter Linux im Wurzelverzeichnis dieses Repos, damit 
+Aufruf grpc-Compiler unter Linux im Wurzelverzeichnis dieses Repos:
 ```
 grpc_tools_node_protoc \
   --js_out=import_style=commonjs,binary:./output \

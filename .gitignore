@@ -1,2 +1,5 @@
 
 node_modules/
+
+# Damit grpcurl.exe nicht mitgepusht wird
+*.exe

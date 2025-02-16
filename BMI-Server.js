@@ -1,18 +1,22 @@
-const grpc = require('@grpc/grpc-js');
-const protoLoader = require('@grpc/proto-loader');
-const path = require('path');
+const grpc        = require( "@grpc/grpc-js"      );
+const protoLoader = require( "@grpc/proto-loader" );
+const path        = require( "path"               );
 
-const PROTO_PATH = path.join(__dirname, 'bmi_berechnung.proto');
-const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
-  keepCase: true,
-  longs: String,
-  enums: String,
-  defaults: true,
-  oneofs: true
-});
-const bmiProto = grpc.loadPackageDefinition(packageDefinition).bmi;
+const PROTO_PATH = path.join( __dirname, "bmi_berechnung.proto" );
+const packageDefinition = 
+        protoLoader.loadSync( PROTO_PATH, 
+                             {
+                                keepCase: true,
+                                longs: String,
+                                enums: String,
+                                defaults: true,
+                                oneofs: true
+                              }
+        );
+const bmiProto = grpc.loadPackageDefinition( packageDefinition ).bmi;
 
-function berechneBmi(call, callback) {
+
+function berechneBmi( call, callback ) {
 
   // Parameter auspacken
   const gewichtKg        = call.request.gewicht_kg;
@@ -20,8 +24,7 @@ function berechneBmi(call, callback) {
 
   // BMI berechnen
   const koerpergroesseM = koerpergroesseCm / 100;
-  let bmi = gewichtKg / (koerpergroesseM * koerpergroesseM);
-  bmi = Math.round(bmi * 10) / 10;
+  const bmi = gewichtKg / (koerpergroesseM * koerpergroesseM);
 
   // Interpretation des BMI-Wertes
   let interpretation = "";
@@ -35,19 +38,19 @@ function berechneBmi(call, callback) {
   const ergebnisObjekt = { 
                            bmi_wert          : bmi, 
                            bmi_interpretation: interpretation 
-                        };
+                         };
 
-  console.log( `BMI-Wert: ${bmi} (${interpretation})` );
+  console.log( `BMI-Wert für ${gewichtKg}kg bei ${koerpergroesseCm}cm berechnet: ${bmi} (${interpretation})` );
 
-  callback(null, ergebnisObjekt);
+  callback( null, ergebnisObjekt );
 }
 
 function main() {
   const server = new grpc.Server();
-  server.addService(bmiProto.BmiDienst.service, { BerechneBmi: berechneBmi });
-  server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
-    server.start();
-    console.log('Server running at http://0.0.0.0:50051');
+  server.addService( bmiProto.BmiDienst.service, { BerechneBmi: berechneBmi } );
+  server.bindAsync( "0.0.0.0:50051", // 0.0.0.0: auf allen Netzwerk-Interfaces lauschen
+                    grpc.ServerCredentials.createInsecure(), () => {
+                      console.log( "Server lauscht auf Port 50051" );
   });
 }
 

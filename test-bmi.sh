@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Server muss auch unter WSL laufen
 
 ./grpcurl -plaintext \
           -d '{"gewicht_kg": 70, "koerpergroesse_cm": 175}' \

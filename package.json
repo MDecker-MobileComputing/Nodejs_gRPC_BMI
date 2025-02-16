@@ -2,5 +2,9 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.12.6",
     "@protobuf-ts/protoc": "^2.9.4"
+  },
+  "scripts": {
+    "start-server": "node BMI-Server.js",
+    "start-client": "node BMI-Client.js"
   }
 }
