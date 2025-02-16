@@ -46,8 +46,8 @@ Für Windows siehe [proto2nodejs.bat](proto2nodejs.bat) (Wert von Variable `PLUG
 
 Ein erfolgreicher Aufruf des grpc-Compilers erzeugt zwei Dateien im Unterordner [output](output/):
 
-* `bmi_berechnung_grpc_pb.js`
-* `bmi_berechnung_pb.js`
+* `bmi_berechnung_grpc_pb.js` : Code für (De-)Serialisierung
+* `bmi_berechnung_pb.js`      : Client- und Server-Stubs
 
 Das `pb` steht hierbei für "Protocol Buffers`.
 Die beiden Dateien dürfen nicht von Hand verändert werden!
