@@ -1,26 +1,25 @@
-const grpc = require( "@grpc/grpc-js" );
-const bmiProto = require( "../output/bmi_berechnung_grpc_pb" );
-const messages = require( "../output/bmi_berechnung_pb" );
+const grpc = require('@grpc/grpc-js');
+const bmiServices = require('../output/bmi_berechnung_grpc_pb');
+const bmiMessages = require('../output/bmi_berechnung_pb');
 
-function main( ) {
-  const client = new bmiProto.BmiDienstClient( "localhost:50051", grpc.credentials.createInsecure( ) );
+function main() {
+    const client = new bmiServices.BmiDienstClient(
+        'localhost:50051',
+        grpc.credentials.createInsecure()
+    );
 
-  const request = new messages.BmiAnfrage( );
-  request.setGewichtKg( 68 );
-  request.setKoerpergroesseCm( 195 );
+    const request = new bmiMessages.BmiEingabe();
+    request.setGewichtKg(70);
+    request.setKoerpergroesseCm(175);
 
-  client.berechneBmi( request, ( error, response ) => {
-    if ( error ) {
-      console.error( "Fehler:", error );
-    } else {
-      const bmiWert = response.getBmiWert( );
-      const bmiInterpretation = response.getBmiInterpretation( );
-
-      const bmiWertGerundet = Math.round( bmiWert * 10 ) / 10;
-
-      console.log( `\nBMI-Wert: ${bmiWertGerundet} (${bmiInterpretation})\n` );
-    }
-  } );
+    client.berechneBmi(request, (error, response) => {
+        if (error) {
+            console.error('Error:', error);
+            return;
+        }
+        console.log('BMI Wert:', response.getBmiWert());
+        console.log('BMI Interpretation:', response.getBmiInterpretation());
+    });
 }
 
-main( );
+main();

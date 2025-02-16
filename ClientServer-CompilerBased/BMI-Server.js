@@ -1,60 +1,44 @@
-const grpc     = require( "@grpc/grpc-js"                    );
-const bmiProto = require( "../output/bmi_berechnung_grpc_pb" );
-const messages = require( "../output/bmi_berechnung_pb"      );
+const grpc        = require('@grpc/grpc-js');
+const bmiServices = require('../output/bmi_berechnung_grpc_pb');
+const bmiMessages = require('../output/bmi_berechnung_pb');
 
+function berechneBmi(call, callback) {
+    const eingabe = call.request;
+    const gewicht_kg = eingabe.getGewichtKg();
+    const koerpergroesse_cm = eingabe.getKoerpergroesseCm();
 
-function berechneBmi( call, callback ) {
+    const heightInMeters = koerpergroesse_cm / 100;
+    const bmiWert = gewicht_kg / (heightInMeters * heightInMeters);
 
-  // Parameter auspacken
-  const gewichtKg        = call.request.getGewichtKg( );
-  const koerpergroesseCm = call.request.getKoerpergroesseCm( );
+    let bmiInterpretation;
+    if (bmiWert < 18.5) {
+        bmiInterpretation = "Untergewicht";
+    } else if (bmiWert < 25) {
+        bmiInterpretation = "Normalgewicht";
+    } else if (bmiWert < 30) {
+        bmiInterpretation = "Übergewicht";
+    } else {
+        bmiInterpretation = "Adipositas";
+    }
 
-  // BMI berechnen
-  const koerpergroesseM = koerpergroesseCm / 100;
-  const bmi = gewichtKg / ( koerpergroesseM * koerpergroesseM );
+    const ergebnis = new bmiMessages.BmiErgebnis();
+    ergebnis.setBmiWert(parseFloat(bmiWert.toFixed(1)));
+    ergebnis.setBmiInterpretation(bmiInterpretation);
 
-  // Interpretation des BMI-Wertes
-  let interpretation = "";
-  if ( bmi < 18.5 ) {
-
-    interpretation = "Untergewicht";
-
-  } else if ( bmi < 25.0 ) {
-
-    interpretation = "Normalgewicht";
-
-  } else if ( bmi < 30.0 ) {
-
-    interpretation = "Prä-Adipositas";
-
-  } else if ( bmi < 35.0 ) {
-
-    interpretation = "Moderate Adipositas";
-
-  } else if ( bmi < 40.0 ) {
-
-    interpretation = "Starke Adipositas";
-
-  } else {
-
-    interpretation = "Extreme Adipositas";
-  }
-
-  const ergebnisObjekt = new messages.BmiAntwort( );
-  ergebnisObjekt.setBmiWert( bmi );
-  ergebnisObjekt.setBmiInterpretation( interpretation );
-
-  console.log( `BMI-Wert für ${gewichtKg}kg bei ${koerpergroesseCm}cm berechnet: ${bmi} (${interpretation})` );
-
-  callback( null, ergebnisObjekt );
+    callback(null, ergebnis);
 }
 
-function main( ) {
-  const server = new grpc.Server( );
-  server.addService( bmiProto.BmiDienstService, { berechneBmi: berechneBmi } );
-  server.bindAsync( "0.0.0.0:50051", grpc.ServerCredentials.createInsecure( ), ( ) => {
-    console.log( "Server lauscht auf Port 50051" );
-  } );
+function main() {
+    const server = new grpc.Server();
+    server.addService(bmiServices.BmiDienstService, { berechneBmi: berechneBmi });
+    server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), (err, port) => {
+        if (err) {
+            console.error('Failed to bind server:', err);
+            return;
+        }
+        console.log(`Server running at http://0.0.0.0:${port}`);
+        //server.start();
+    });
 }
 
-main( );
+main();
