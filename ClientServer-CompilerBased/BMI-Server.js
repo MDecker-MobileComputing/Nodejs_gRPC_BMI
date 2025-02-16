@@ -2,6 +2,7 @@ const grpc        = require( "@grpc/grpc-js"                    );
 const bmiServices = require( "../output/bmi_berechnung_grpc_pb" );
 const bmiMessages = require( "../output/bmi_berechnung_pb"      );
 
+
 function berechneBmi( call, callback ) {
 
     const eingabe          = call.request;
@@ -46,7 +47,6 @@ function main() {
         }
 
         console.log( `\nServer gestartet auf Port ${port}.\n` );
-        //server.start();
     });
 }
 

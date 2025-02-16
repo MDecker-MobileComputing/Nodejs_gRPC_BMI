@@ -4,10 +4,11 @@ const bmiMessages = require( "../output/bmi_berechnung_pb"      );
 
 function main() {
 
-    const client = new bmiServices.BmiDienstClient(
-        "localhost:50051",
-        grpc.credentials.createInsecure()
-    );
+    const client = 
+            new bmiServices.BmiDienstClient(
+                          "localhost:50051",
+                          grpc.credentials.createInsecure()
+            );
 
     const request = new bmiMessages.BmiEingabe();
     request.setGewichtKg( 99 );
