@@ -33,6 +33,7 @@ grpc_tools_node_protoc \
 <br>
 
 Erzeuge Stub-Dateien für Client und Server: siehe Verzeichnis [output](output/).
+Diese Dateien dürfen nicht manuell geändert werden!
 
 <br>
 
