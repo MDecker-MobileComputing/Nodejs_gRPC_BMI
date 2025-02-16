@@ -20,7 +20,7 @@ npm install -g grpc-tools protobufjs
 
 <br>
 
-Aufruf grpc-Compiler unter Linux im Wurzelverzeichnis dieses Repos:
+Aufruf grpc-Compiler unter Linux im Wurzelverzeichnis dieses Repos, damit 
 ```
 grpc_tools_node_protoc \
   --js_out=import_style=commonjs,binary:./output \
@@ -29,6 +29,10 @@ grpc_tools_node_protoc \
   -I . \
   bmi_berechnung.proto
 ```
+
+<br>
+
+Erzeuge Stub-Dateien für Client und Server: siehe Verzeichnis [output](output/).
 
 <br>
 
