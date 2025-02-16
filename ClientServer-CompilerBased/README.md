@@ -5,3 +5,9 @@ gRCP-Compiler `protoc` erzeugten Stub-Dateien verwendet und daher nicht die `.pr
 ausliest.
 
 <br>
+
+Befehle, um diese Dateien auszuführen (im Wurzelverzeichnis einzugeben):
+```
+npm run server-2
+npm run client-2
+```

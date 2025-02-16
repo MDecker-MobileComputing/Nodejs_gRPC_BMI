@@ -5,7 +5,9 @@
     "google-protobuf": "^3.21.4"
   },
   "scripts": {
-    "start-server": "node ClientServer-ProtoBased/BMI-Server.js",
-    "start-client": "node ClientServer-ProtoBased/BMI-Client.js"
+    "server-1": "node ClientServer-ProtoBased/BMI-Server.js",
+    "client-1": "node ClientServer-ProtoBased/BMI-Client.js",
+    "server-2": "node ClientServer-CompilerBased/BMI-Server.js",
+    "client-2": "node ClientServer-CompilerBased/BMI-Client.js"
   }
 }
