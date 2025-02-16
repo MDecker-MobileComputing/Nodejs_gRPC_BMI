@@ -2,14 +2,21 @@
 
 <br>
 
-Dieses Repo enthält eine [`.proto`-Datei](bmi_berechnung.proto) für einen gRPC-Dienst zur Berechnung des 
-[Body Mass Index (BMI)](https://www.apotheken-umschau.de/gesund-bleiben/abnehmen/body-mass-index-den-bmi-berechnen-706435.html).
+Diese Repo enthält Client und Server (Nodejs) für die Durchführung einer Berechnung des
+[Body Mass Index (BMI)](https://www.apotheken-umschau.de/gesund-bleiben/abnehmen/body-mass-index-den-bmi-berechnen-706435.html)
+über [gRPC](https://www.ionos.de/digitalguide/server/knowhow/grpc-vorgestellt/).
 
 <br>
 
 ----
 
-## Aufruf grpc-Compiler ##
+## Aufruf grpc ##
+
+<br>
+
+Der grpc-Compiler `grpc` muss aufgerufen werden, um anhand der
+Datei [bmi_berechnung.proto](bmi_berechnung.proto) (Schnittstellenbeschreibung) die Stubs für Client und Server
+zu erzeugen. 
 
 <br>
 
@@ -20,7 +27,8 @@ npm install -g grpc-tools protobufjs
 
 <br>
 
-Aufruf grpc-Compiler unter Linux im Wurzelverzeichnis dieses Repos:
+Aufruf grpc-Compiler unter Linux im Wurzelverzeichnis dieses Repos 
+(siehe auch [proto2nodejs.sh](proto2nodejs.sh)):
 ```
 grpc_tools_node_protoc \
   --js_out=import_style=commonjs,binary:./output \
@@ -32,8 +40,12 @@ grpc_tools_node_protoc \
 
 <br>
 
-Erzeuge Stub-Dateien für Client und Server: siehe Verzeichnis [output](output/).
-Diese Dateien dürfen nicht manuell geändert werden!
+Für Windows siehe [proto2nodejs.bat](proto2nodejs.bat) (Wert von Variable `PLUGIN_PFAD` anpassen).
+
+<br>
+
+Erzeugte Stub-Dateien für Client und Server: siehe Verzeichnis [output](output/).
+Die Dateien in diesem Verzeichnis dürfen nicht von Hand geändert werden!
 
 <br>
 
