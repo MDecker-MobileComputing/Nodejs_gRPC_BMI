@@ -22,9 +22,13 @@ function main() {
 
   client.BerechneBmi(request, (error, response) => {
     if (error) {
-      console.error('Error:', error);
+      console.error('Fehler:', error);
     } else {
-      console.log('Response:', response);
+
+      const bmiWert           = response.bmi_wert;
+      const bmiInterpretation = response.bmi_interpretation;
+
+      console.log(`\nBMI-Wert: ${bmiWert} (${bmiInterpretation})\n`);
     }
   });
 }

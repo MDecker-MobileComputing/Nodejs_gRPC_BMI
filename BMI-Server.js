@@ -37,6 +37,8 @@ function berechneBmi(call, callback) {
                            bmi_interpretation: interpretation 
                         };
 
+  console.log( `BMI-Wert: ${bmi} (${interpretation})` );
+
   callback(null, ergebnisObjekt);
 }
 
