@@ -44,8 +44,13 @@ Für Windows siehe [proto2nodejs.bat](proto2nodejs.bat) (Wert von Variable `PLUG
 
 <br>
 
-Erzeugte Stub-Dateien für Client und Server: siehe Verzeichnis [output](output/).
-Die Dateien in diesem Verzeichnis dürfen nicht von Hand geändert werden!
+Ein erfolgreicher Aufruf des grpc-Compilers erzeugt zwei Dateien im Unterordner [output](output/):
+
+* `bmi_berechnung_grpc_pb.js`
+* `bmi_berechnung_pb.js`
+
+Das `pb` steht hierbei für "Protocol Buffers`.
+Die beiden Dateien dürfen nicht von Hand verändert werden!
 
 <br>
 

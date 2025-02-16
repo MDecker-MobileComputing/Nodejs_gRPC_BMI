@@ -21,9 +21,9 @@ function main() {
                                         );
 
   const request = {
-            gewicht_kg: 68,
-            koerpergroesse_cm: 195
-  };
+                    gewicht_kg       :  68,
+                    koerpergroesse_cm: 195
+                 };
 
   client.BerechneBmi( request, ( error, response ) => {
 
