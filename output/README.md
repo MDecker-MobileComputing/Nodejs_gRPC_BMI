@@ -11,6 +11,6 @@ Diese Dateien dürfen nicht manuell geändert werden.
 <br>
 
 Client und Server, die diese Dateien verwenden: 
-[ClientServer-CompilerBased](ClientServer-CompilerBased)
+[ClientServer-CompilerBased](../ClientServer-CompilerBased)
 
 <br>
