@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo
 
 ./grpcurl -plaintext \
           -d '{"gewicht_kg": 70, "koerpergroesse_cm": 175}' \
@@ -7,6 +8,8 @@
           -proto bmi_berechnung.proto \
           localhost:50051 bmi.BmiDienst/BerechneBmi
 
-# grpcurl needs the .proto file to understand the structure of the gRPC service and the messages it needs to send. 
-# The .proto file defines the service methods, request and response message types, and other necessary details. 
-# This allows grpcurl to correctly format the request and interpret the response from the gRPC server.
+echo
+
+# grpcurl benötigt die .proto-Datei, um die Struktur des gRPC-Dienstes und die zu sendenden Nachrichten zu verstehen.
+# Die .proto-Datei definiert die Methoden des Dienstes, die Anfrage- und Antwortnachrichtentypen und andere notwendige Details.
+# Dadurch kann grpcurl die Anfrage korrekt formatieren und die Antwort des gRPC-Servers interpretieren.
