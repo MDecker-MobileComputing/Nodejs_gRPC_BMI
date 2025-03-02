@@ -27,6 +27,7 @@ function deserialize_bmi_BmiErgebnis(buffer_arg) {
 }
 
 
+// *
 // Dienstdefinition für die BMI-Berechnung
 var BmiDienstService = exports.BmiDienstService = {
   berechneBmi: {
