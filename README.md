@@ -1,4 +1,4 @@
-# BMI-Berechnung mit gRPC #
+# BMI-Berechnung mit gRPC für Nodejs #
 
 <br>
 
