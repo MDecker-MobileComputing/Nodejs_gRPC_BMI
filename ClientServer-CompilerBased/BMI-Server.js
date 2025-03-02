@@ -38,7 +38,8 @@ function main() {
                      );
 
     server.bindAsync( "0.0.0.0:50051", 
-                      grpc.ServerCredentials.createInsecure(), ( error, port ) => {
+                      grpc.ServerCredentials.createInsecure(), 
+                      ( error, port ) => {
 
         if ( error ) {
 
