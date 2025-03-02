@@ -8,6 +8,10 @@ Diese Repo enthält Client und Server (Nodejs) für die Durchführung einer Bere
 
 <br>
 
+Siehe [dieses Repo](https://github.com/MDecker-MobileComputing/Maven_gRPC_BMI) für einen Client mit Java. 
+
+<br>
+
 ----
 
 ## Aufruf protoc für Nodejs ##
