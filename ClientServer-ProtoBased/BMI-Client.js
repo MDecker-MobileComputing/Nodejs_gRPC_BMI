@@ -19,18 +19,17 @@ function main() {
 
   const client = new bmiProto.BmiDienst( "localhost:50051", 
                                          grpc.credentials.createInsecure()
-                                        );
-
+                                       );
   const request = {
                     gewicht_kg       :  68,
                     koerpergroesse_cm: 195
-                 };
+                  };
 
   client.BerechneBmi( request, ( error, response ) => {
 
     if ( error ) {
 
-      console.error( "Fehler:", error);
+      console.error( "Fehler:", error );
 
     } else {
 
@@ -39,7 +38,7 @@ function main() {
 
       const bmiWertGerundet = Math.round( bmiWert * 10 ) / 10;
 
-      console.log(`\nBMI-Wert: ${bmiWertGerundet} (${bmiInterpretation})\n`);
+      console.log( `\nBMI-Wert: ${bmiWertGerundet} (${bmiInterpretation})\n` );
     }
   });
 }
